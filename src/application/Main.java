@@ -1,20 +1,29 @@
 package application;
 	
 import javafx.application.Application;
-import javafx.stage.Stage;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.control.ScrollPane;
+import javafx.stage.Stage;
 
 
 public class Main extends Application {
+	
 	@Override
-	public void start(Stage primaryStage) {
+	public void start(Stage MainView) {
 		try {
-			BorderPane root = new BorderPane();
-			Scene scene = new Scene(root,400,400);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			primaryStage.setScene(scene);
-			primaryStage.show();
+			
+			ScrollPane root = FXMLLoader.load(getClass().getResource("/gui/MainView.fxml"));
+			Scene scene = new Scene(root);
+			
+			root.setFitToHeight(true);
+			root.setFitToWidth(true);
+			
+			MainView.setTitle("Work Shop");
+			MainView.setScene(scene);
+			MainView.show();
+			
+		
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
