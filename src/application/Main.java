@@ -9,19 +9,24 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 	
+	private static Scene mainScene;
+	
 	@Override
-	public void start(Stage MainView) {
+	public void start(Stage mainView) {
 		try {
 			
-			ScrollPane root = FXMLLoader.load(getClass().getResource("/gui/MainView.fxml"));
-			Scene scene = new Scene(root);
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/MainView.fxml"));
+			ScrollPane scrollPane = loader.load(); 
 			
-			root.setFitToHeight(true);
-			root.setFitToWidth(true);
+			mainScene = new Scene(scrollPane);
 			
-			MainView.setTitle("Work Shop");
-			MainView.setScene(scene);
-			MainView.show();
+			scrollPane.setFitToHeight(true);
+			scrollPane.setFitToWidth(true);
+			
+			mainView.setTitle("Work Shop");
+			mainView.setScene(mainScene);
+			mainView.show();
+			
 			
 		
 		} catch(Exception e) {
@@ -29,6 +34,10 @@ public class Main extends Application {
 		}
 	}
 	
+	public static Scene getMainScene() {
+		return mainScene;
+	}
+
 	public static void main(String[] args) {
 		launch(args);
 	}
